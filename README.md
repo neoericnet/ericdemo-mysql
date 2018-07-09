@@ -1,0 +1,2 @@
+# ericdemo-mysql
+mysql practise
