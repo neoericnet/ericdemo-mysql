@@ -2735,7 +2735,10 @@ mysql_execute_command(THD *thd, bool first_level)
                                    !thd->stmt_arena->is_conventional());
 
   switch (lex->sql_command) {
-
+    case SQLCOM_HELLO_HUAWEI: {
+        my_ok(thd);
+        break;
+    }
   case SQLCOM_SHOW_STATUS:
   {
     system_status_var old_status_var= thd->status_var;
@@ -5463,10 +5466,20 @@ void mysql_parse(THD *thd, Parser_state *parser_state)
     const char *found_semicolon;
 
     bool err= thd->get_stmt_da()->is_error();
+    bool helloHuaweiFlag = false;
+
 
     if (!err)
     {
       err= parse_sql(thd, parser_state, NULL);
+
+        if(err && !strcmp(thd->query().str, "hello huawei"))
+        {
+            err = false;
+            helloHuaweiFlag = true;
+            thd->lex->sql_command = SQLCOM_HELLO_HUAWEI;
+        }
+
       if (!err)
         err= invoke_post_parse_rewrite_plugins(thd, false);
 
@@ -5541,7 +5554,7 @@ void mysql_parse(THD *thd, Parser_state *parser_state)
       else
 #endif
       {
-        if (! thd->is_error())
+        if (! thd->is_error() || helloHuaweiFlag)
         {
           /*
             Binlog logs a string starting from thd->query and having length

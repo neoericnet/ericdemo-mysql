@@ -2520,6 +2520,7 @@ SHOW_VAR com_status_vars[]= {
   {"xa_recover",           (char*) offsetof(STATUS_VAR, com_stat[(uint) SQLCOM_XA_RECOVER]),                 SHOW_LONG_STATUS, SHOW_SCOPE_ALL},
   {"xa_rollback",          (char*) offsetof(STATUS_VAR, com_stat[(uint) SQLCOM_XA_ROLLBACK]),                SHOW_LONG_STATUS, SHOW_SCOPE_ALL},
   {"xa_start",             (char*) offsetof(STATUS_VAR, com_stat[(uint) SQLCOM_XA_START]),                   SHOW_LONG_STATUS, SHOW_SCOPE_ALL},
+  {"hello_huawei",             (char*) offsetof(STATUS_VAR, com_stat[(uint) SQLCOM_HELLO_HUAWEI]),                   SHOW_LONG_STATUS, SHOW_SCOPE_ALL},
   {NullS, NullS, SHOW_LONG, SHOW_SCOPE_ALL}
 };
 
