@@ -2735,10 +2735,10 @@ mysql_execute_command(THD *thd, bool first_level)
                                    !thd->stmt_arena->is_conventional());
 
   switch (lex->sql_command) {
-    case SQLCOM_HELLO_HUAWEI: {
-        my_ok(thd);
-        break;
-    }
+  case SQLCOM_HELLO_HUAWEI: {
+     my_ok(thd, 0, 0, "you  are a good man!");
+     break;
+   }
   case SQLCOM_SHOW_STATUS:
   {
     system_status_var old_status_var= thd->status_var;
